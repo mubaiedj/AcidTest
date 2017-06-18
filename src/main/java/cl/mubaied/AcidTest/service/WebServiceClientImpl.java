@@ -9,10 +9,11 @@ import java.net.URL;
 import org.springframework.stereotype.Service;
 
 import cl.mubaied.AcidTest.model.User;
+import cl.mubaied.AcidTest.util.Properties;
 
 @Service("webServiceClient")
 public class WebServiceClientImpl implements WebServiceClient {
-
+	
 	/**
 	 * Metodo encargado de realizar una llamada post a un servicio 
 	 * web privado enviandole un objeto user y retorna el codigo
@@ -29,12 +30,12 @@ public class WebServiceClientImpl implements WebServiceClient {
 		
 		try {
 			
-			URL url = new URL("http://localhost:8080/AcidTest/rest/verifyUser" + "/" + user.getUsername());
+			URL url = new URL(Properties.getWebServiceUrl() + "/" + user.getUsername());
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setRequestProperty("Cookie", "token=acidtest");
+			conn.setRequestProperty("Cookie", "token=" + Properties.getWebServiceToken());
 			
 			OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());

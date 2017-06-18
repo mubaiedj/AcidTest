@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cl.mubaied.AcidTest.model.User;
 import cl.mubaied.AcidTest.service.WebServiceClient;
+import cl.mubaied.AcidTest.util.Properties;
 
 @Service("loginRestServiceFacade")
 public class LoginRestServiceImpl implements LoginRestServiceFacade{
@@ -21,7 +22,7 @@ public class LoginRestServiceImpl implements LoginRestServiceFacade{
 	
 	@Override
 	public Response verifyUser(String username, String image, String token) {
-		if(!"acidtest".equals(token))
+		if(!Properties.getWebServiceToken().equals(token))
 			return Response.status(401).build();
 		
 		if("h001".equals(username)){
