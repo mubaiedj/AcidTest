@@ -6,8 +6,12 @@ angularRoutingApp.config(function($routeProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl : 'resources/pages/login	.html',
+            templateUrl : 'resources/pages/login.html',
             controller  : 'mainController'
+        })
+        .when('/welcome', {
+            templateUrl : 'resources/pages/welcome.html',
+            controller  : 'welcomeController'
         })
         .otherwise({
             redirectTo: '/'

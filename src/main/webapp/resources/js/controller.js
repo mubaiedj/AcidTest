@@ -45,9 +45,29 @@ angularRoutingApp.controller('mainController', function($scope, $http, $window) 
 			return false;
 		}
 		
+		if(!$scope.validateFileType($scope.loadedImage.filetype)){
+			$scope.error = true;
+			$scope.errorMessage = "Wrong file type";
+			return false;
+		}
 		return true;
 	};
-     
+		
+	$scope.validateFileType = function(fileType) {
+		switch(fileType) {
+	    case 'image/jpeg':
+	        return true;
+	    case 'image/bmp':
+	    	return true;
+	    case 'image/gif':
+	    	return true;
+	    case 'image/png':
+	    	return true;
+	    default:
+	    	return false;
+		}	
+	};
+	    
 });
 
 angularRoutingApp.controller('welcomeController', function($scope, $http, $window) {
